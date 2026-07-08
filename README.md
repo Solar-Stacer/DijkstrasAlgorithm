@@ -1,0 +1,6 @@
+This program provides a GUI for a node graph for calculating Dijkstra's Algorithm. New nodes can be made and connected by edges and weight of the edges can be edited as well. Each node has a value, reflecting its shortest distance from the source node. All nodes are initially `inf` (infinity) except for the source node which is 0. When Dijkstra's Alogirthm is calculated, values of the nodes are changed to reflect the shortest distance from the source node. 
+
+The node table can be used to deduce the shortest distance (or the shortest path) from the Source node to a specific (destination) node. This can be done by successively looking at the Previous Node entry of the destination node. If, for instance, one wants to deduce shortest distance from Node 4 to the Source Node, one should look at the Previous Node entry in Node 4. Say the Previous Node entry says Node 7, then one should look at the Previous Node entry of Node 7. Then one should look at the Previous Node entry of the node in the Previous Node entry of node 7 and so on. This is repeated until Source Node is reached in the Previous Node entry. The path in this example would then be node 4 -> node 7 -> ... -> Source Node.
+
+## Running the program
+Install all the dependencies in the `requirements.txt`, and run the `MainUI.py`.
