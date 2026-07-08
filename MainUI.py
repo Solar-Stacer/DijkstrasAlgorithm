@@ -3,8 +3,8 @@ from PySide6 import QtGui as qtg
 from PySide6 import QtWidgets as qtw
 from DijkstraFunction import dijkstra, getPathToSourceNode
 from HelpDialogs import DijkstraDescriptionDialog, HowToUseDialog, AboutDialog
-from __NodeClasses import *
-from __ConnectClasses import *
+from NodeClasses import *
+from ConnectClasses import *
 import os, sys
 import resources_rc
 

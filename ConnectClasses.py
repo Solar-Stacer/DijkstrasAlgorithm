@@ -3,14 +3,14 @@ from PySide6 import QtGui as qtg
 from PySide6 import QtWidgets as qtw
 from math import sin, cos, pi
 
-import __NodeClasses
+import NodeClasses
 
 
 class ConnectLineItemText(qtw.QGraphicsTextItem):
 
     ConnectItem_Request_For_Value_Change_In_Connect_Table = qtc.Signal()
 
-    def __init__(self, connect_item):
+    def __init__(self, connect_item: ConnectLineItem):
         super().__init__()
         # Sets the textbox interactive, i.e. editable
         self.setTextInteractionFlags(qtc.Qt.TextInteractionFlag.TextEditorInteraction)
@@ -63,7 +63,7 @@ class ConnectLineItem(qtw.QGraphicsObject):
     ConnectTable_Select_Request = qtc.Signal(object)
     ConnectTable_Deselect_Request = qtc.Signal(object)
 
-    def __init__(self, start_node, end_node):
+    def __init__(self, start_node: NodeClasses.NodeItem, end_node: NodeClasses.NodeItem):
         super().__init__()
 
         self.pen_width = 5
@@ -86,8 +86,8 @@ class ConnectLineItem(qtw.QGraphicsObject):
         self._line = qtc.QLineF()
 
         self.prepareGeometryChange()    # notify the QGraphicsScene that the item's boundingRect is about to change
-        start = self.mapFromScene(self.start_node.sceneBoundingRect().center())
-        end = self.mapFromScene(self.end_node.sceneBoundingRect().center())
+        start = self.start_node.sceneBoundingRect().center()
+        end = self.end_node.sceneBoundingRect().center()
         self._line = qtc.QLineF(start, end)
         self.text = ConnectLineItemText(self)
         self.text.setParentItem(self)
@@ -111,8 +111,8 @@ class ConnectLineItem(qtw.QGraphicsObject):
 
     def adjust(self):
         self.prepareGeometryChange()
-        start = self.mapFromScene(self.start_node.sceneBoundingRect().center())
-        end = self.mapFromScene(self.end_node.sceneBoundingRect().center())
+        start = self.start_node.sceneBoundingRect().center()
+        end = self.end_node.sceneBoundingRect().center()
         self._line = qtc.QLineF(start, end)
         self.update()
         self.text.updatePos()
@@ -143,7 +143,7 @@ class ConnectLineItem(qtw.QGraphicsObject):
         path.addPolygon(shape_poly_rect)
         return path
 
-    def returnNeighbor(self, neighbor: __NodeClasses.NodeItem):
+    def returnNeighbor(self, neighbor: NodeClasses.NodeItem):
         """
         Only called in DijkstraFunction.py and returns node A where edge
         is between node A and B and neighbor is B.
